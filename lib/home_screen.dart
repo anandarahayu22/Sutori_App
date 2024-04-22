@@ -9,7 +9,26 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: _appBar(context),
-        body: const Center(child: Text('MAU MAKAN APA HARI INI??')),
+        body: Center(
+            child: TextButton(
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text('Perhatian!'),
+                          content: Text('Maaf Toko Tutup Sementara'),
+                          actions: <Widget>[
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text('Ok'))
+                          ],
+                        );
+                      });
+                },
+                child: Text('MAU MAKAN APA HARI INI??'))),
         drawer: _drawer(),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: FloatingActionButton(
@@ -20,6 +39,7 @@ class HomeScreen extends StatelessWidget {
           },
           backgroundColor: Color(0xFF5D4037),
           foregroundColor: Colors.white,
+          shape: CircleBorder(),
           child: Icon(Icons.add),
         ),
         bottomNavigationBar: _bottomNavigationBar());
@@ -75,34 +95,25 @@ class HomeScreen extends StatelessWidget {
 
   AppBar _appBar(BuildContext context) {
     return AppBar(
-        // backgroundColor: Color(0xFF014D4E),
-        iconTheme: IconThemeData(color: Color(0xFF5D4037)),
-        title: const Text(
-          'Sutori',
-          style: TextStyle(
-              color: Color(0xFF5D4037),
-              fontWeight: FontWeight.bold,
-              fontSize: 26),
+      title: Text(
+        'Sutori',
+        style: TextStyle(
+          color: Colors.white, // Warna teks
         ),
-        centerTitle: true,
-        actions: [
-          //IconButton(
-          // onPressed: () {},
-          //icon: const Icon(
-          //Icons.shopping_cart_checkout_rounded,
-          //color: Color(0xFF5D4037),
-          //  )),
-          IconButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => InfoDetailScreen()));
-              },
-              icon: const Icon(
-                Icons.shopping_cart_checkout_rounded,
-                color: Color(0xFF5D4037),
-              ))
-        ]);
+      ),
+      backgroundColor: Color(0xFF5D4037),
+      centerTitle: true,
+      actions: [
+        IconButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => InfoDetailScreen()));
+            },
+            icon: Icon(
+              Icons.shopping_cart_checkout_rounded,
+              color: Colors.white,
+            ))
+      ],
+    );
   }
 }
