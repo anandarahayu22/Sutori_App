@@ -9,51 +9,45 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: _appBar(context),
-        body: Center(
-            child: TextButton(
-                onPressed: () {
-                  showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: Text('Perhatian!'),
-                          content: Text('Maaf Toko Tutup Sementara'),
-                          actions: <Widget>[
-                            TextButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                                child: Text('Ok'))
-                          ],
-                        );
-                      });
-                },
-                child: Text('MAU MAKAN APA HARI INI??'))),
+        body: InkWell(
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => AddStoryScreen()));
+          },
+          child: Hero(
+            tag: 'image_animation',
+            child: Center(
+                child: Image.asset(
+              'kilua.jpg',
+              width: 200,
+              height: 200,
+            )),
+          ),
+        ),
         drawer: _drawer(),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: FloatingActionButton(
-          tooltip: 'Add Pesanan',
+          tooltip: 'Add Story',
           onPressed: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => AddStoryScreen()));
           },
-          backgroundColor: Color(0xFF5D4037),
+          backgroundColor: Colors.brown,
           foregroundColor: Colors.white,
           shape: CircleBorder(),
-          child: Icon(Icons.add),
+          child: const Icon(Icons.add),
         ),
         bottomNavigationBar: _bottomNavigationBar());
   }
 
   BottomNavigationBar _bottomNavigationBar() {
     return BottomNavigationBar(
-        backgroundColor: Color(0xFF5D4037),
+        backgroundColor: Colors.brown,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.white,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.local_dining_rounded), label: 'Menu'),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
         ]);
   }
 
@@ -65,27 +59,25 @@ class HomeScreen extends StatelessWidget {
         children: const [
           DrawerHeader(
               child: Text(
-            'Sutori',
+            'Profil',
             style: TextStyle(
-                color: Color(0xFF5D4037),
-                fontWeight: FontWeight.bold,
-                fontSize: 21),
+                color: Colors.brown, fontWeight: FontWeight.bold, fontSize: 21),
           )),
           ListTile(
-            leading: Icon(Icons.account_circle, color: Color(0xFF795548)),
+            leading: Icon(Icons.account_circle, color: Colors.brown),
             title: Text(
               'Profil',
-              style: TextStyle(color: Color(0xFF5D4037)),
+              style: TextStyle(color: Colors.brown),
             ),
           ),
           ListTile(
             leading: Icon(
-              Icons.content_paste,
-              color: Color(0xFF5D4037),
+              Icons.settings,
+              color: Colors.brown,
             ),
             title: Text(
-              'Transaksi',
-              style: TextStyle(color: Color(0xFF5D4037)),
+              'Setting',
+              style: TextStyle(color: Colors.brown),
             ),
           )
         ],
@@ -95,25 +87,32 @@ class HomeScreen extends StatelessWidget {
 
   AppBar _appBar(BuildContext context) {
     return AppBar(
-      title: Text(
-        'Sutori',
-        style: TextStyle(
-          color: Colors.white, // Warna teks
+        // backgroundColor: Color(0xFF014D4E),
+        iconTheme: const IconThemeData(color: Colors.brown),
+        title: const Text(
+          'Sutori App',
+          style: TextStyle(
+              color: Colors.brown, fontWeight: FontWeight.bold, fontSize: 26),
         ),
-      ),
-      backgroundColor: Color(0xFF5D4037),
-      centerTitle: true,
-      actions: [
-        IconButton(
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => InfoDetailScreen()));
-            },
-            icon: Icon(
-              Icons.shopping_cart_checkout_rounded,
-              color: Colors.white,
-            ))
-      ],
-    );
+        centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.notifications,
+                color: Colors.brown,
+              )),
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => InfoDetailScreen()));
+              },
+              icon: const Icon(
+                Icons.info,
+                color: Colors.brown,
+              ))
+        ]);
   }
 }
