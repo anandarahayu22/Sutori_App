@@ -53,8 +53,6 @@ class HomeScreen extends StatelessWidget {
 
   Drawer _drawer() {
     return Drawer(
-      // child: Container(
-      // color: Color.fromARGB(255, 0, 44, 45),
       child: ListView(
         children: const [
           DrawerHeader(
@@ -87,7 +85,6 @@ class HomeScreen extends StatelessWidget {
 
   AppBar _appBar(BuildContext context) {
     return AppBar(
-        // backgroundColor: Color(0xFF014D4E),
         iconTheme: const IconThemeData(color: Colors.brown),
         title: const Text(
           'Sutori App',
